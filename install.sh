@@ -3014,7 +3014,7 @@ check_program() {
 }
 
 curl_local_connect() {
-    curl -4 -Is -o /dev/null -w %{http_code} "https://$1/$2"
+    curl -Is -o /dev/null -w %{http_code} "https://$1/$2"
 }
 
 check_xray_local_connect() {
@@ -3036,7 +3036,7 @@ check_xray_local_connect() {
 
 check_online_version_connect() {
     xray_online_version_status=$(curl_local_connect "www.idleleo.com" "api/xray_shell_versions")
-    if [[ ${xray_online_version_status} != "200" ]]; then
+    if [[ ${xray_online_version_status} == "200" ]]; then
         if [[ ${xray_online_version_status} == "403" ]]; then
             echo -e "${Error} ${RedBG} 脚本维护中.. 请稍后再试! ${Font}"
         else
