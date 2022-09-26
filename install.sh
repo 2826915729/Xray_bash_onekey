@@ -3014,7 +3014,7 @@ check_program() {
 }
 
 curl_local_connect() {
-    curl -Is -o /dev/null -w %{http_code} "https://$1/$2"
+    curl -4 -Is -o /dev/null -w %{http_code} "https://$1/$2"
 }
 
 check_xray_local_connect() {
